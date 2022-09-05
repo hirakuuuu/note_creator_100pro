@@ -1,34 +1,51 @@
 $("#submitButton").click(function () {
-  var formData = new FormData($("#uploadForm")[0]);
+  var formData = new FormData();
+  var files = document.getElementById("upload").files;
 
-  $.ajax("/predict", {
-    type: "post",
-    data: formData,
-    processData: false,
-    contentType: false,
-    cache: false,
-    timeout: 10000,
-  })
-    .done(function (received_data) {
-      var dict = JSON.parse(received_data);
-      var answer = dict["answer"];
-      var text = "";
-      var colsize = 0;
-      var rowsize = answer.length * 3;
+  for (var i = 0; i < files.length; i++) {
+    console.log(files[i]);
+    formData.append("image", files[i]);
+  }
+
+  axios
+    .post("/predict", formData)
+    .then(function (response) {
+      console.log(response);
+      var answer = response.data.answer;
+      console.log(answer);
       for (const elem of answer) {
-        // $("#predict").append($("<p>").append(elem));
-        text += elem + "\n" + "\n";
-        colsize = Math.max(colsize, elem.length);
+        $("#trixeditor").append($("<div>").append(elem, "<br />"));
       }
       // textareaにテキストを入れる
-      var textform = document.getElementById("textform");
-      textform.style.display = "block";
-      textform.value = text;
-      textform.cols = (colsize * 2).toString();
-      textform.rows = rowsize.toString();
+      var trixeditor = document.getElementById("trixeditor");
+      trixeditor.style.display = "block";
       console.log("成功");
     })
-    .fail(function () {
-      console.log("失敗");
+    .catch(function (error) {
+      console.log(error);
     });
+
+  // $.ajax("/predict", {
+  //   type: "post",
+  //   data: formData,
+  //   processData: false,
+  //   contentType: false,
+  //   cache: false,
+  //   timeout: 10000,
+  // })
+  //   .done(function (received_data) {
+  //     var dict = JSON.parse(received_data);
+  //     var answer = dict["answer"];
+  //     console.log(answer);
+  //     for (const elem of answer) {
+  //       $("#trixeditor").append($("<div>").append(elem, "<br />"));
+  //     }
+  //     // textareaにテキストを入れる
+  //     var trixeditor = document.getElementById("trixeditor");
+  //     trixeditor.style.display = "block";
+  //     console.log("成功");
+  //   })
+  //   .fail(function () {
+  //     console.log("失敗");
+  //   });
 });
