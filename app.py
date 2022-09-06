@@ -1,3 +1,4 @@
+from distutils import filelist
 import os
 from flask import Flask, render_template, request, redirect, url_for, flash
 from werkzeug.utils import secure_filename
@@ -57,37 +58,36 @@ def index():
 @app.route("/predict", methods=["POST"])
 def get_text_on_img():
     if request.method == "POST":
+        output_text = []
         try:
-            file = request.files["upfile"]
-            # ファイルが無かった場合の処理
-            # if 'file' not in request.files:
-            #     return redirect(request.url)
-            
-            # データの取り出し
-            # file = request.files['file']
-            # ファイル名がなかったときの処理
-            print(file.filename)
-            if file.filename == '':
-                return redirect(request.url)
+            files = request.files.getlist('image')
+            for file in files:
+                # ファイル名の確認
+                print(file.filename)
+                if file.filename == '':
+                    return redirect(request.url)
 
-            # ファイルのチェック
-            if file and allowed_file(file.filename):
-                # 危険な文字を削除（サニタイズ処理）
-                filename = secure_filename(file.filename)
-                # ファイルの保存
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                # ファイルのパス
-                imgfilepath = '../uploads/'+filename
-                # 文字の読み取り
-                output_text = getText(filename=filename)
+                # ファイルのチェック
+                if file and allowed_file(file.filename):
+                    # 危険な文字を削除（サニタイズ処理）
+                    filename = secure_filename(file.filename)
+                    # ファイルの保存
+                    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                    # 文字の読み取り
+                    output_text += getText(filename=filename)
 
         except Exception as e:
             print(e)
-            output_text = ''
 
         dict = {"answer": output_text}
     
     return json.dumps(dict)
+
+@app.route('/topdf', methods=["POST"])
+def trix_to_pdf():
+    if request.method == "POST":
+        trix_text = request.form.get('content')
+        print(trix_text)
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
