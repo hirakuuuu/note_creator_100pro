@@ -3,9 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <title>test</title>
+    <link rel="stylesheet" type="text/css" href="./static/trix/trix.css">
+    <script type="text/javascript" src="./static/trix/trix.js"></script>
   </head>
   <body>
-    <p>画像をアップロード</p>
+    <p>画像アップロード</p>
     <form method="post" id="uploadForm" enctype="multipart/form-data">
       <input type="file" name="upfile" onchange="previewFile(this);" required />
       <input type="button" id="submitButton" value="送信" />
@@ -14,6 +16,12 @@
       <img id="preview" width="500px" />
       <div id="predict" style="margin-left: 20px"></div>
     </div>
+
+    <button type="button" id="appendTest">trix test文追加</button>
+    <form>
+      <input id="X" type="hidden" name="content">
+      <trix-editor input="X"></trix-editor>
+    </form>
   </body>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script type="text/javascript" src="./static/js/preview.js"></script>

@@ -32,7 +32,7 @@ def index():
         # ファイルが無かった場合の処理
         if 'file' not in request.files:
             return redirect(request.url)
-        
+
         # データの取り出し
         file = request.files['file']
         # ファイル名がなかったときの処理
@@ -62,7 +62,7 @@ def get_text_on_img():
             # ファイルが無かった場合の処理
             # if 'file' not in request.files:
             #     return redirect(request.url)
-            
+
             # データの取り出し
             # file = request.files['file']
             # ファイル名がなかったときの処理
@@ -86,7 +86,7 @@ def get_text_on_img():
             output_text = ''
 
         dict = {"answer": output_text}
-    
+
     return json.dumps(dict)
 
 @app.route('/uploads/<filename>')

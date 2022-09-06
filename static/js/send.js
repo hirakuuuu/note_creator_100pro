@@ -13,7 +13,8 @@ $("#submitButton").click(function () {
       var dict = JSON.parse(received_data);
       var answer = dict["answer"];
       for (const elem of answer) {
-        $("#predict").append($("<p>").append(elem));
+        // $("#predict").append($("<p>").append(elem));
+        $("trix-editor").append(elem + "<br>");
       }
       console.log("成功");
     })
