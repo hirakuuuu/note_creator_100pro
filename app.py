@@ -61,15 +61,8 @@ def get_text_on_img():
         output_text = []
         try:
             files = request.files.getlist('image')
-            print(files)
-            # ファイルが無かった場合の処理
-            # if 'file' not in request.files:
-            #     return redirect(request.url)
-            
-            # データの取り出し
-            # file = request.files['file']
-            # ファイル名がなかったときの処理
             for file in files:
+                # ファイル名の確認
                 print(file.filename)
                 if file.filename == '':
                     return redirect(request.url)
@@ -89,6 +82,12 @@ def get_text_on_img():
         dict = {"answer": output_text}
     
     return json.dumps(dict)
+
+@app.route('/topdf', methods=["POST"])
+def trix_to_pdf():
+    if request.method == "POST":
+        trix_text = request.form.get('content')
+        print(trix_text)
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):

@@ -17,15 +17,12 @@
         style="display: flex; flex-flow: column"
       ></div>
 
-      <form width="40%" style="margin-left: 20px">
+      <form action="/topdf" method="POST" width="40%" style="margin-left: 20px">
         <input id="x" type="hidden" name="content" />
         <trix-editor id="trixeditor" input="x"></trix-editor>
+        <input type="submit" id="trixButton" value="保存" />
       </form>
     </div>
-    <!-- <form>
-      <input id="x" type="hidden" name="content" />
-      <trix-editor input="x"></trix-editor>
-    </form> -->
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

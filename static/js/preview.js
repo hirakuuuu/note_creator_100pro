@@ -1,4 +1,6 @@
 $(function () {
+  // アップロードした画像のプレビューを表示する処理
+  // imgurを使うなら、色々変えていく必要性あり
   $("#upload").change(function () {
     if (!this.files.length) {
       return;
