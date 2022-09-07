@@ -11,9 +11,10 @@ $(function () {
       var fileReader = new FileReader();
 
       fileReader.onload = function (e) {
-        $("#preview").append(
-          $('<img src="' + e.target.result + '" width="100%">')
-        );
+        // base64に変換した文字列を取得
+        var base64Text = e.currentTarget.result;
+
+        $("#preview").append($('<img src="' + base64Text + '" width="100%">'));
       };
       fileReader.readAsDataURL(files[i]);
     }
