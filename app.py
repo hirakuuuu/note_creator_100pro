@@ -1,12 +1,14 @@
 from distutils import filelist
 import os
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, send_file, current_app as app
 from werkzeug.utils import secure_filename
 import json
+import html
 
 from flask import send_from_directory
 
 from cloud_vision_api import getText
+from fpdf import FPDF, HTMLMixin
 
 # 画像のアップロード先のディレクトリ
 UPLOAD_FOLDER = './uploads'
@@ -83,11 +85,36 @@ def get_text_on_img():
 
     return json.dumps(dict)
 
+class MyFPDF(FPDF, HTMLMixin):
+    pass
+
 @app.route('/topdf', methods=["POST"])
 def trix_to_pdf():
     if request.method == "POST":
-        trix_text = request.form.get('content')
-        print(trix_text)
+        trix_content = request.form.get('content')
+        print(trix_content)
+
+        # convert html text to pdf
+        pdf = MyFPDF()
+        pdf.add_page()
+
+        # fontをaddする
+        font_path = '/usr/share/fonts/opentype/ipafont-mincho/ipam.ttf'
+        pdf.add_font('mincho', fname=font_path)
+        # fontをsetする
+        pdf.set_font('mincho')
+        # debug print コメントアウトすると，trixに入力した文字が出力
+        # trix_content = '''
+        # <H1 align="center">html2fpdf</H1>
+        # <h2>Basic usage</h2>
+        # <p>あああ</p>
+        # '''
+        pdf.write_html(trix_content)
+        filepath = './tuto1.pdf'
+        filename = os.path.basename(filepath)
+        pdf.output(filename)
+        return send_file(filepath, mimetype='application/pdf')
+
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
