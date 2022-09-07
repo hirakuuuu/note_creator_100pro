@@ -1,9 +1,21 @@
-function previewFile(uploaded_file) {
-  var fileData = new FileReader();
-  fileData.onload = function () {
-    //id属性が付与されているimgタグのsrc属性に、fileReaderで取得した値の結果を入力することで
-    //プレビュー表示している
-    document.getElementById("preview").src = fileData.result;
-  };
-  fileData.readAsDataURL(uploaded_file.files[0]);
-}
+$(function () {
+  // アップロードした画像のプレビューを表示する処理
+  // imgurを使うなら、色々変えていく必要性あり
+  $("#upload").change(function () {
+    if (!this.files.length) {
+      return;
+    }
+    var files = $(this).prop("files");
+    var len = files.length;
+    for (var i = 0; i < len; i++) {
+      var fileReader = new FileReader();
+
+      fileReader.onload = function (e) {
+        $("#preview").append(
+          $('<img src="' + e.target.result + '" width="100%">')
+        );
+      };
+      fileReader.readAsDataURL(files[i]);
+    }
+  });
+});

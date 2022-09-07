@@ -7,14 +7,23 @@
     <script type="text/javascript" src="./static/trix/trix.js"></script>
   </head>
   <body>
-    <p>画像アップロード</p>
-    <form method="post" id="uploadForm" enctype="multipart/form-data">
-      <input type="file" name="upfile" onchange="previewFile(this);" required />
+    <p>画像をアップロード</p>
+    <form method="post" enctype="multipart/form-data">
+      <input type="file" name="upfile" id="upload" multiple required />
       <input type="button" id="submitButton" value="送信" />
     </form>
     <div style="display: flex; align-items: flex-start">
-      <img id="preview" width="500px" />
-      <div id="predict" style="margin-left: 20px"></div>
+      <div
+        id="preview"
+        width="40%"
+        style="display: flex; flex-flow: column"
+      ></div>
+
+      <form action="/topdf" method="POST" width="40%" style="margin-left: 20px">
+        <input id="x" type="hidden" name="content" />
+        <trix-editor id="trixeditor" input="x"></trix-editor>
+        <input type="submit" id="trixButton" value="保存" />
+      </form>
     </div>
 
     <button type="button" id="appendTest">trix test文追加</button>
@@ -23,7 +32,12 @@
       <trix-editor input="X"></trix-editor>
     </form>
   </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script type="text/javascript" src="./static/js/preview.js"></script>
   <script type="text/javascript" src="./static/js/send.js"></script>
+
+  <!-- Trixのインポート -->
+  <link rel="stylesheet" type="text/css" href="./static/css/trix.css" />
+  <script src="static/js/trix.js"></script>
 </html>
