@@ -1,5 +1,8 @@
 from distutils import filelist
 import os
+import datetime
+import pathlib
+
 from flask import Flask, render_template, request, redirect, url_for, flash, send_file, current_app as app
 from werkzeug.utils import secure_filename
 import json
@@ -110,9 +113,10 @@ def trix_to_pdf():
         # <p>あああ</p>
         # '''
         pdf.write_html(trix_content)
-        filepath = './tuto1.pdf'
-        filename = os.path.basename(filepath)
-        pdf.output(filename)
+        now_str = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+        pathlib.Path('downloads').mkdir(exist_ok=True)
+        filepath = f'downloads/{now_str}.pdf'
+        pdf.output(filepath)
         return send_file(filepath, mimetype='application/pdf')
 
 
