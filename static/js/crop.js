@@ -30,7 +30,25 @@ $(".save").click(function(e) {
   e.preventDefault();
   // get result to data uri
   let imgSrc = cropper.getCroppedCanvas({
-		width: $(".img-w").attr("value") // input value
+		width: $("#img-w")[0].value // input value
+	}).toDataURL();
+  // remove hide class of img
+  $(".cropped").removeClass("hide");
+  $(".img-result").removeClass("hide");
+	// show image cropped
+  $('.cropped').attr('src', imgSrc);
+  $(".insert").removeClass("hide");
+  $(".download").removeClass("hide");
+  $('.download').attr('download', 'imagename.png');
+  $('.download').attr('href',imgSrc);
+});
+
+// insert on click
+$(".insert").click(function(e) {
+  e.preventDefault();
+  // get result to data uri
+  let imgSrc = cropper.getCroppedCanvas({
+		width: $("#img-w")[0].value // input value
 	}).toDataURL();
   // remove hide class of img
   $(".cropped").removeClass("hide");
@@ -40,6 +58,11 @@ $(".save").click(function(e) {
   $(".download").removeClass("hide");
   $('.download').attr('download', 'imagename.png');
   $('.download').attr('href',imgSrc);
+  // insert
+  $("<img>", {
+    class: 'img-trix',
+    src: imgSrc
+  }).appendTo('#trixeditor');
 });
 
 // when you crop preview-img, crop target will change to the image you click
