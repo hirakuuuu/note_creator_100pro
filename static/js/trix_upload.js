@@ -12,12 +12,13 @@
     if (event.file) {
       asBase64(event.file)
         .then(function (data) {
+          let editor = document.querySelector("trix-editor");
           let image = document.createElement("img");
           image.src = data;
           let tmp = document.createElement("div");
           tmp.appendChild(image);
-          let editor = document.querySelector("trix-editor");
           editor.editor.insertHTML(tmp.innerHTML);
+          editor.editor.insertLineBreak();
         })
         .catch((e) => console.log(e));
     }

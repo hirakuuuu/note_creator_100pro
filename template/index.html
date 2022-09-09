@@ -17,9 +17,13 @@
         style="display: flex; flex-flow: column"
       ></div>
 
-      <form action="/topdf" method="POST" width="40%" style="margin-left: 20px">
+      <form action="/topdf" method="POST" style="margin-left: 20px">
         <input id="x" type="text" name="content" />
-        <trix-editor id="trixeditor" input="x"></trix-editor>
+        <trix-editor
+          id="trixeditor"
+          class="trix-content"
+          input="x"
+        ></trix-editor>
         <input type="submit" id="trixButton" value="保存" />
       </form>
     </div>
@@ -31,7 +35,7 @@
 
   <!-- Trixのインポート -->
   <link rel="stylesheet" type="text/css" href="./static/css/trix.css" />
-  <script src="static/js/trix.js"></script>
+  <script src="./static/js/trix.js"></script>
 
   <!-- 画像のアップロードのためのスクリプト -->
   <!-- 参考：https://qiita.com/kyamadahoge/items/5295bb530d48c5c35eef -->
