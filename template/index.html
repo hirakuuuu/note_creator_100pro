@@ -5,6 +5,9 @@
     <title>test</title>
     <link rel="stylesheet" type="text/css" href="./static/trix/trix.css">
     <script type="text/javascript" src="./static/trix/trix.js"></script>
+
+    <link rel="stylesheet" href="./static/css/styles.css">
+    <link rel="stylesheet" href="./static/css/crop.css">
   </head>
   <body>
     <p>画像をアップロード</p>
@@ -17,22 +20,47 @@
         id="preview"
         width="40%"
         style="display: flex; flex-flow: column"
-      ></div>
+        ></div>
 
+        <!-- crop -->
+        <div class="box-2">
+          <div class="result"></div>
+        </div>
+        <!--rightbox-->
+        <div class="box-2 img-result hide">
+          <!-- result of crop -->
+          <img class="cropped" src="" alt="">
+        </div>
+        <!-- input file -->
+        <div class="box">
+          <div class="options hide">
+            <label> Width</label>
+            <input type="number" class="img-w" value="300" min="100" max="1200" />
+          </div>
+          <!-- save btn -->
+          <button class="btn save hide">Save</button>
+          <!-- download btn -->
+          <a href="" class="btn download hide">Download</a>
+        </div>
+      </div>
       <form action="/topdf" method="POST" width="40%" style="margin-left: 20px">
         <input id="x" type="hidden" name="content" />
         <trix-editor id="trixeditor" input="x"></trix-editor>
         <input type="submit" id="trixButton" value="保存" />
       </form>
-    </div>
 
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script type="text/javascript" src="./static/js/preview.js"></script>
   <script type="text/javascript" src="./static/js/send.js"></script>
+  <script type="text/javascript" src="./static/js/crop.js"></script>
 
   <!-- Trixのインポート -->
   <link rel="stylesheet" type="text/css" href="./static/css/trix.css" />
   <script src="static/js/trix.js"></script>
+
+  <!-- cropper-->
+  <link rel="stylesheet" href="./static/css/cropper.css" />
+  <script src="./static/js/cropper.js"></script>
 </html>

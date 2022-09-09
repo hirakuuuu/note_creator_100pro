@@ -12,7 +12,7 @@ $(function () {
 
       fileReader.onload = function (e) {
         $("#preview").append(
-          $('<img src="' + e.target.result + '" width="100%">')
+          $('<img class="preview-img" src="' + e.target.result + '" width="100%" onclick="viewCrop(this)">')
         );
       };
       fileReader.readAsDataURL(files[i]);
