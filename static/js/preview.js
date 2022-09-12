@@ -11,10 +11,13 @@ $(function () {
       var fileReader = new FileReader();
 
       fileReader.onload = function (e) {
-        // base64に変換した文字列を取得
-        var base64Text = e.currentTarget.result;
-
-        $("#preview").append($('<img src="' + base64Text + '" width="100%">'));
+        $("#preview").append(
+          $(
+            '<img class="preview-img" src="' +
+              e.target.result +
+              '" width="100%" onclick="viewCrop(this)">'
+          )
+        );
       };
       fileReader.readAsDataURL(files[i]);
     }
