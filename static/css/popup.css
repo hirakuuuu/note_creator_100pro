@@ -1,0 +1,16 @@
+#inline-popup {
+  background-color: #fff;
+  width: 60%;
+  margin: 30px auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.popup-box {
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  width: auto;
+  max-width: 500px;
+  margin: 20px auto;
+}

@@ -13,34 +13,36 @@
       <input type="file" name="upfile" id="upload" multiple required />
       <input type="button" id="submitButton" value="送信" />
     </form>
-    <div style="display: flex; align-items: flex-start">
-      <div
-        id="preview"
-        width="40%"
-        style="display: flex; flex-flow: column"
-      ></div>
 
-      <!-- crop -->
-      <div class="box-2">
-        <div class="result"></div>
-      </div>
-      <!--rightbox-->
-      <div class="box-2 img-result hide">
-        <!-- result of crop -->
-        <img class="cropped" src="" alt="" />
-      </div>
-      <!-- input file -->
-      <div class="box">
-        <div class="options hide">
-          <label> Width</label>
-          <input type="number" id="img-w" value="800" min="100" max="1200" />
+    <div>
+      <div id="preview"></div>
+
+      <div id="inline-wrap" class="popup-box mfp-hide">
+        <h1>画像をインラインの中に表示</h1>
+        <!-- crop -->
+        <div style="display: flex">
+          <div class="box-2">
+            <div class="result"></div>
+          </div>
+          <!--rightbox-->
+          <div class="box-2 img-result hide">
+            <!-- result of crop -->
+            <img class="cropped" src="" alt="" />
+          </div>
         </div>
-        <!-- save btn -->
-        <button class="btn save hide">Save</button>
-        <!-- insert btn -->
-        <button class="btn insert hide">Insert</button>
-        <!-- download btn -->
-        <a href="" class="btn download hide">Download</a>
+        <!-- input file -->
+        <div class="box">
+          <div class="options hide">
+            <label> Width</label>
+            <input type="number" id="img-w" value="800" min="100" max="1200" />
+          </div>
+          <!-- save btn -->
+          <button class="btn save hide">Save</button>
+          <!-- insert btn -->
+          <button class="btn insert hide">Insert</button>
+          <!-- download btn -->
+          <a href="" class="btn download hide">Download</a>
+        </div>
       </div>
     </div>
     <form action="/topdf" method="POST" width="40%" style="margin-left: 20px">
@@ -51,6 +53,7 @@
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
   <script type="text/javascript" src="./static/js/preview.js"></script>
   <script type="text/javascript" src="./static/js/send.js"></script>
   <script type="text/javascript" src="./static/js/crop.js"></script>
@@ -66,4 +69,13 @@
   <!-- cropper-->
   <link rel="stylesheet" href="./static/css/cropper.css" />
   <script src="./static/js/cropper.js"></script>
+
+  <!-- magnific popup -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
+  />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
+  <link rel="stylesheet" type="text/css" href="./static/css/popup.css" />
+  <script src="./static/js/popup.js"></script>
 </html>

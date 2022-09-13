@@ -9,13 +9,15 @@ $(function () {
     var len = files.length;
     for (var i = 0; i < len; i++) {
       var fileReader = new FileReader();
-
       fileReader.onload = function (e) {
+        // プレビュー表示する画像(モーダルを呼び出すリンク付き)
         $("#preview").append(
-          $(
-            '<img class="preview-img" src="' +
-              e.target.result +
-              '" width="100%" onclick="viewCrop(this)">'
+          $('<a class="popup-modal" href="#inline-wrap"></a>').append(
+            $(
+              '<img class="preview-img" height="100%" src="' +
+                e.target.result +
+                '"  onclick="viewCrop(this)">'
+            )
           )
         );
       };
