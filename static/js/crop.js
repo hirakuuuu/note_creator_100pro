@@ -18,7 +18,7 @@ $("#upload").change(function(e) {
         $(".save").removeClass("hide");
         $(".options").removeClass("hide");
 				// init cropper, set crop frames
-				cropper = new Cropper(img);
+				cropper = new Cropper(img); // 中のimgはid名
       }
     };
     reader.readAsDataURL(e.target.files[0]);
