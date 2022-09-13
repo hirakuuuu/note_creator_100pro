@@ -1,30 +1,66 @@
 .box {
-	padding: 0.5em;
-	width: 100%;
-	margin:0.5em;
-}
-
-.box-2 {
-	padding: 0.5em;
-	width: calc(100%/2 - 1em);
+  padding: 0.5em;
+  width: 100%;
+  margin: 0.5em;
 }
 
 .options label,
-.options input{
-	width:4em;
-	padding:0.5em 1em;
+.options input {
+  width: 4em;
+  padding: 0.5em 1em;
 }
-.btn{
-	background:white;
-	color:black;
-	border:1px solid black;
-	padding: 0.5em 1em;
-	text-decoration:none;
-	margin:0.8em 0.3em;
-	display:inline-block;
-	cursor:pointer;
+.btn {
+  background: white;
+  color: black;
+  border: 1px solid black;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  margin: 0.8em 0.3em;
+  display: inline-block;
+  cursor: pointer;
 }
 
 .hide {
-	display: none;
+  display: none;
+}
+
+/* トリミング画面のサイズを固定 */
+
+@media (min-width: 768px) {
+  .cropimage-wrap {
+    display: flex;
+    height: 40vh;
+    margin: 10px;
+  }
+  .box-2 {
+    padding: 0.5em;
+    width: 50%;
+    height: 100%;
+  }
+  .box-2 img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .cropimage-wrap {
+    margin: 10px;
+    position: static;
+    height: 450px;
+  }
+  .box-2 {
+    height: 50%;
+    width: 100%;
+    max-height: 50%;
+    max-width: 100%;
+  }
+  .box-2 img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .cropped .result {
+    max-width: 100%;
+    max-height: 100%;
+  }
 }

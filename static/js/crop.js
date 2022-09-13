@@ -53,6 +53,8 @@ function viewCrop(obj) {
     id: "img",
     src: obj.src,
   }).appendTo(".result");
+
+  $(".cropped").attr("src", obj.src);
   //show save btn and options
   $(".save").removeClass("hide");
   $(".options").removeClass("hide");

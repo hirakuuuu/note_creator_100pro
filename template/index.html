@@ -2,10 +2,9 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>test</title>
-
     <link rel="stylesheet" href="./static/css/styles.css" />
-    <link rel="stylesheet" href="./static/css/crop.css" />
   </head>
   <body>
     <p>画像をアップロード</p>
@@ -18,16 +17,15 @@
       <div id="preview"></div>
 
       <div id="inline-wrap" class="popup-box mfp-hide">
-        <h1>画像をインラインの中に表示</h1>
         <!-- crop -->
-        <div style="display: flex">
+        <div class="cropimage-wrap">
           <div class="box-2">
             <div class="result"></div>
           </div>
           <!--rightbox-->
           <div class="box-2 img-result hide">
             <!-- result of crop -->
-            <img class="cropped" src="" alt="" />
+            <img class="cropped" id="cropped-image" src="" alt="" />
           </div>
         </div>
         <!-- input file -->
@@ -69,6 +67,7 @@
   <!-- cropper-->
   <link rel="stylesheet" href="./static/css/cropper.css" />
   <script src="./static/js/cropper.js"></script>
+  <link rel="stylesheet" href="./static/css/crop.css" />
 
   <!-- magnific popup -->
   <link
