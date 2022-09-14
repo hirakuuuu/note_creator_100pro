@@ -17,30 +17,25 @@
       <div id="preview"></div>
 
       <div id="inline-wrap" class="popup-box mfp-hide">
+        <div>トリミング</div>
         <!-- crop -->
+
         <div class="cropimage-wrap">
           <div class="box-2">
             <div class="result"></div>
           </div>
+          <div class="box-2">
+            <canvas
+              id="canvas"
+              class="preview-canvas"
+              width="300"
+              height="300"
+            ></canvas>
+          </div>
           <!--rightbox-->
-          <div class="box-2 img-result hide">
-            <!-- result of crop -->
-            <img class="cropped" id="cropped-image" src="" alt="" />
-          </div>
+          <img class="cropped" id="cropped-image" src="" alt="" />
         </div>
-        <!-- input file -->
-        <div class="box">
-          <div class="options hide">
-            <label> Width</label>
-            <input type="number" id="img-w" value="800" min="100" max="1200" />
-          </div>
-          <!-- save btn -->
-          <button class="btn save hide">Save</button>
-          <!-- insert btn -->
-          <button class="btn insert hide">Insert</button>
-          <!-- download btn -->
-          <a href="" class="btn download hide">Download</a>
-        </div>
+        <button class="btn insert">Insert</button>
       </div>
     </div>
     <form action="/topdf" method="POST" width="40%" style="margin-left: 20px">
