@@ -4,13 +4,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>test</title>
+    <link rel="stylesheet" href="static/css/base.css">
+    <style>
+    .btn{
+      text-align: right;
+    }
+    </style> 
     <link rel="stylesheet" href="./static/css/styles.css" />
   </head>
+  
   <body>
-    <p>画像をアップロード</p>
+    <p>
+      <h1>ノート生成アプリ</h1>
+    </p>
     <form method="post" enctype="multipart/form-data">
-      <input type="file" name="upfile" id="upload" multiple required />
-      <input type="button" id="submitButton" value="送信" />
+
+      <label>
+        <input type="file" name="upfile" id="upload" multiple required />画像をアップロード
+      </label>
+      <p class="name">選択されていません</p>
+            </div>
+      <div class="btn">
+        <input type="button" id="submitButton" value="送信" class="btn--blue"/>
+      </div>
     </form>
 
     <div>
@@ -41,8 +57,11 @@
     <form action="/topdf" method="POST" width="40%" style="margin-left: 20px">
       <input id="x" type="hidden" name="content" />
       <trix-editor id="trixeditor" input="x"></trix-editor>
-      <input type="submit" id="trixButton" value="保存" />
     </form>
+    <div class="btn">
+      <input type="submit" id="trixButton" value="保存"  class="btn--blue"/>
+    </div>
+
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
