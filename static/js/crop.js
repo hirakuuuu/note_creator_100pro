@@ -3,10 +3,12 @@ let cnt = 0;
 // insert on click
 $(".insert").click(function (e) {
   e.preventDefault();
+  console.log(e);
   // get result to data uri
   let imgSrc = cropper
     .getCroppedCanvas({
-      width: 500,
+      height: (300 * canvas.height) / canvas.width,
+      width: 300,
     })
     .toDataURL();
   // remove hide class of img
@@ -17,7 +19,6 @@ $(".insert").click(function (e) {
   $(".download").removeClass("hide");
   $(".download").attr("download", "imagename.png");
   $(".download").attr("href", imgSrc);
-  console.log(event);
   // insert
   $("<img>", {
     class: "img-trix",
@@ -60,15 +61,8 @@ function viewCrop(obj) {
       var y1 = Math.min(img.height, Math.max(0, event.detail.y));
       var cropwidth = Math.min(img.width, event.detail.width);
       var cropheight = Math.min(img.height, event.detail.height);
-
-      if (cropwidth > cropheight) {
-        canvas.width = 300;
-        canvas.height = 300 * (cropheight / cropwidth);
-      } else {
-        canvas.width = 300 * (cropwidth / cropheight);
-        canvas.height = 300;
-      }
-
+      canvas.width = cropwidth;
+      canvas.height = cropheight;
       const canvasCtx = document.getElementById("canvas").getContext("2d");
       canvasCtx.clearRect(0, 0, canvas.width, canvas.height); // 描画前にクリア
       canvasCtx.drawImage(

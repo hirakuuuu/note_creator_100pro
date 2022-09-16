@@ -476,3 +476,16 @@ trix-editor .attachment__metadata .attachment__size {
   flex-basis: 50%;
   max-width: 50%;
 }
+
+trix-editor img {
+  max-width: 300px;
+  height: auto;
+}
+
+.attachment {
+  display: inline-block;
+  position: relative;
+  max-width: 50%;
+  margin: 0;
+  padding: 0;
+}
