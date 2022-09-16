@@ -43,6 +43,8 @@ a.btn--blue {
     transition    : .3s;         /* なめらか変化 */
     box-shadow    : 6px 6px 3px #189ca8b6;  /* 影の設定 */
     border        : 2px solid #029aa877;    /* 枠の指定 */
+    margin-top: 1em;
+    margin-bottom: 2em;
 }
 
 /* .btn--blue:hover,
