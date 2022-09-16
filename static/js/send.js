@@ -4,7 +4,6 @@ $("#submitButton").click(function () {
 
   // 複数枚の画像を使うので、forを使う
   for (var i = 0; i < files.length; i++) {
-    console.log(files[i]);
     formData.append("image", files[i]);
   }
 
@@ -16,7 +15,8 @@ $("#submitButton").click(function () {
       var answer = response.data.answer;
       for (const elem of answer) {
         // ブロックごとにdivタグで囲んでeditorの中に追加していく
-        $("#trixeditor").append($("<div>").append(elem, "<br />"));
+
+        $("#trixeditor").append($("<div>").append(elem, "<br />", "<br />"));
       }
       console.log("成功");
     })

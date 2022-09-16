@@ -2,14 +2,9 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>test</title>
-    <link rel="stylesheet" type="text/css" href="./static/trix/trix.css">
-    <script type="text/javascript" src="./static/trix/trix.js"></script>
-
-    <link rel="stylesheet" href="./static/css/styles.css">
-    <link rel="stylesheet" href="./static/css/crop.css">
-
-
+    <link rel="stylesheet" href="./static/css/styles.css" />
   </head>
   <body>
     <p>画像をアップロード</p>
@@ -17,58 +12,66 @@
       <input type="file" name="upfile" id="upload" multiple required />
       <input type="button" id="submitButton" value="送信" />
     </form>
-    <div style="display: flex; align-items: flex-start">
-      <div
-        id="preview"
-        width="40%"
-        style="display: flex; flex-flow: column"
-        ></div>
 
+    <div>
+      <div id="preview"></div>
+
+      <div id="inline-wrap" class="popup-box mfp-hide">
+        <div>トリミング</div>
         <!-- crop -->
-        <div class="box-2">
-          <div class="result"></div>
-        </div>
-        <!--rightbox-->
-        <div class="box-2 img-result hide">
-          <!-- result of crop -->
-          <img class="cropped" src="" alt="">
-        </div>
-        <!-- input file -->
-        <div class="box">
-          <div class="options hide">
-            <label> Width</label>
-            <input type="number" id="img-w" value="800" min="100" max="1200" />
-          </div>
-          <!-- save btn -->
-          <button class="btn save hide">Save</button>
-          <!-- insert btn -->
-          <button class="btn insert hide">Insert</button>
-          <!-- download btn -->
-          <a href="" class="btn download hide">Download</a>
-        </div>
-      </div>
-      <form action="/topdf" method="POST" width="40%" style="margin-left: 20px">
-        <input id="x" type="hidden" name="content" />
-        <trix-editor id="trixeditor" input="x"></trix-editor>
-        <input type="submit" id="trixButton" value="保存" />
-      </form>
 
+        <div class="cropimage-wrap">
+          <div class="box-2">
+            <div class="result"></div>
+          </div>
+          <div class="box-2">
+            <canvas
+              id="canvas"
+              class="preview-canvas"
+              width="300"
+              height="300"
+            ></canvas>
+          </div>
+          <!--rightbox-->
+          <img class="cropped" id="cropped-image" src="" alt="" />
+        </div>
+        <button class="btn insert">Insert</button>
+      </div>
+    </div>
+    <form action="/topdf" method="POST" width="40%" style="margin-left: 20px">
+      <input id="x" type="hidden" name="content" />
+      <trix-editor id="trixeditor" input="x"></trix-editor>
+      <input type="submit" id="trixButton" value="保存" />
+    </form>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
   <script type="text/javascript" src="./static/js/preview.js"></script>
   <script type="text/javascript" src="./static/js/send.js"></script>
   <script type="text/javascript" src="./static/js/crop.js"></script>
 
   <!-- Trixのインポート -->
   <link rel="stylesheet" type="text/css" href="./static/css/trix.css" />
-  <script src="static/js/trix.js"></script>
+  <script src="./static/js/trix.js"></script>
+
+  <!-- 画像のアップロードのためのスクリプト -->
+  <!-- 参考：https://qiita.com/kyamadahoge/items/5295bb530d48c5c35eef -->
+  <script type="text/javascript" src="./static/js/trix_upload.js"></script>
 
   <!-- cropper-->
   <link rel="stylesheet" href="./static/css/cropper.css" />
   <script src="./static/js/cropper.js"></script>
 
-  <!-- magnific popup 現状使ってない-->
-  <link rel="stylesheet" href="./static/magnific-popup/magnific-popup.css" />
-  <script src="./static/magnific-popup/jquery.magnific-popup.min.js"></script>
+  <link rel="stylesheet" href="./static/css/crop.css" />
+
+  <!-- magnific popup -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
+  />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
+  <link rel="stylesheet" type="text/css" href="./static/css/popup.css" />
+  <script src="./static/js/popup.js"></script>
+
 </html>

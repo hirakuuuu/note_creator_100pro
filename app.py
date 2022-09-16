@@ -102,7 +102,7 @@ def trix_to_pdf():
         pdf.add_page()
 
         # fontをaddする
-        font_path = '/usr/share/fonts/opentype/ipafont-mincho/ipam.ttf'
+        font_path = './static/font/ipaexm.ttf'
         pdf.add_font('mincho', fname=font_path)
         # fontをsetする
         pdf.set_font('mincho')

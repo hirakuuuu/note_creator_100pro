@@ -1,0 +1,33 @@
+#inline-popup {
+  background-color: #fff;
+  width: 60%;
+  margin: 30px auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.popup-modal {
+  margin: 20px;
+}
+
+.popup-box {
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  width: 50%;
+  height: 400px;
+  max-height: 80%;
+}
+
+@media (min-width: 768px) {
+  .popup-box {
+    min-width: 700px;
+  }
+}
+
+@media (max-width: 767px) {
+  .popup-box {
+    height: 80vh;
+  }
+}

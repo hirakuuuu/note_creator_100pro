@@ -4,6 +4,17 @@
   max-width: 60%;
 }
 
+#preview {
+  height: 35vh;
+  display: flex;
+  overflow-x: scroll;
+  padding: 10px;
+  margin: 0, 20px;
+}
+
+#preview::-webkit-scrollbar {
+  display: none;
+}
 
 /* currently unused */
 .trix-button--icon-align-left::before {
