@@ -95,7 +95,6 @@ class MyFPDF(FPDF, HTMLMixin):
 def trix_to_pdf():
     if request.method == "POST":
         trix_content = request.form.get('content')
-        print(trix_content)
 
         # convert html text to pdf
         pdf = MyFPDF()
@@ -112,14 +111,25 @@ def trix_to_pdf():
         # <h2>Basic usage</h2>
         # <p>あああ</p>
         # '''
-        pdf.write_html(trix_content)
         start = 0
         # <figure タグを探し、その前に<br>を入れる
-        while trix_content.find('<figure', start) != -1:
-            tmp = trix_content.find('<figure', start)
-            trix_content = trix_content[:tmp] + '<br>' + trix_content[tmp:]
-            # print(trix_content[:tmp + 10]) # debug
-            start = tmp + 7
+        print('start')
+        # while trix_content.find('<figure', start) != -1:
+        #     tmp = trix_content.find('<figure', start)
+        #     trix_content = trix_content[:tmp] + '<br><br>' + trix_content[tmp:]
+        #     # print(trix_content[:tmp + 10]) # debug
+        #     start = tmp + 7
+
+        # start = 0
+        # # </figure> タグを探し、その後ろに<br>を入れる
+        # while trix_content.find('</figure>', start) != -1:
+        #     tmp = trix_content.find('</figure>', start)
+        #     trix_content = trix_content[:tmp+9] + '<br><br>' + trix_content[tmp+9:]
+        #     # print(trix_content[:tmp + 10]) # debug
+        #     start = tmp + 9
+
+        print(trix_content)
+        pdf.write_html(trix_content)
 
         now_str = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
         pathlib.Path('downloads').mkdir(exist_ok=True)
