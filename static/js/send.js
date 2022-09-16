@@ -15,7 +15,6 @@ $("#submitButton").click(function () {
       var answer = response.data.answer;
       for (const elem of answer) {
         // ブロックごとにdivタグで囲んでeditorの中に追加していく
-
         $("#trixeditor").append($("<div>").append(elem, "<br />", "<br />"));
       }
       console.log("成功");

@@ -28,6 +28,7 @@ $(function () {
         // 隠してたポップアップ領域とボタンを出現させる
         $("#cropping-popup").removeClass("hide")
         $("#submitButton").removeClass("hide")
+        $("#cropping-desc").removeClass("hide")
         // プレビュー表示する画像(モーダルを呼び出すリンク付き)
         $("#preview").append(
           $('<a class="popup-modal" href="#inline-wrap"></a>').append(
