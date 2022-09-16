@@ -5,7 +5,7 @@ $(function () {
       //getElementByIdで上記のhtmlのID id="file_input"　から選択されたファイルの情報を読み込む。
       var files = document.getElementById("upload").files;
       var file = [];
-  
+
       for (var i = 0; i < files.length; i++) {
         //console.log(files[i]);
         file[i] = files[i].name
@@ -25,6 +25,9 @@ $(function () {
     for (var i = 0; i < len; i++) {
       var fileReader = new FileReader();
       fileReader.onload = function (e) {
+        // 隠してたポップアップ領域とボタンを出現させる
+        $("#cropping-popup").removeClass("hide")
+        $("#submitButton").removeClass("hide")
         // プレビュー表示する画像(モーダルを呼び出すリンク付き)
         $("#preview").append(
           $('<a class="popup-modal" href="#inline-wrap"></a>').append(
@@ -41,7 +44,7 @@ $(function () {
     }
   });
   // 送信ボタンの制御
-  $('input[type=file]').change(function (){ 
+  $('input[type=file]').change(function (){
     $('#submitButton').css({
       'border-radius' : '5%',          /* 角丸       */
       'font-size'     : '10pt',        /* 文字サイズ */
@@ -59,15 +62,15 @@ $(function () {
       'mouseenter': function () {
         $(this).css('opacity', '0.8');
       },
-      
+
       'mouseleave': function () {
         $(this).css('opacity', '1.0');
       }
     })
   });
-  
+
   // 保存ボタンの制御
-  $('input[type=button]').change(function (){ 
+  $('input[type=button]').change(function (){
     $('#trixButton').css({
       'border-radius' : '5%',          /* 角丸       */
       'font-size'     : '10pt',        /* 文字サイズ */
@@ -86,7 +89,7 @@ $(function () {
         $(this).css('opacity', '0.8');
       },
       'mouseleave': function () {
-        $(this).css('opacity', '1.0'); 
+        $(this).css('opacity', '1.0');
       }
     })
   });

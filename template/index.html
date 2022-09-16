@@ -9,10 +9,10 @@
     .btn{
       text-align: right;
     }
-    </style> 
+    </style>
     <link rel="stylesheet" href="./static/css/styles.css" />
   </head>
-  
+
   <body>
     <p>
       <h1>ノート生成アプリ</h1>
@@ -23,37 +23,36 @@
         <input type="file" name="upfile" id="upload" multiple required />画像をアップロード
       </label>
       <p class="name">選択されていません</p>
+      <div id="cropping-popup" class="hide">
+        <div id="preview"></div>
+
+        <div id="inline-wrap" class="popup-box mfp-hide">
+          <div>トリミング</div>
+          <!-- crop -->
+          <div class="cropimage-wrap">
+            <div class="box-2">
+              <div class="result"></div>
             </div>
+            <div class="box-2">
+              <canvas
+                id="canvas"
+                class="preview-canvas"
+                width="300"
+                height="300"
+              ></canvas>
+            </div>
+            <!--rightbox-->
+            <img class="cropped" id="cropped-image" src="" alt="" />
+          </div>
+          <button class="btn insert">Insert</button>
+        </div>
+      </div>
+
       <div class="btn">
-        <input type="button" id="submitButton" value="送信" class="btn--blue"/>
+        <input type="button" id="submitButton" value="文字認識" class="btn--blue hide"/>
       </div>
     </form>
 
-    <div>
-      <div id="preview"></div>
-
-      <div id="inline-wrap" class="popup-box mfp-hide">
-        <div>トリミング</div>
-        <!-- crop -->
-
-        <div class="cropimage-wrap">
-          <div class="box-2">
-            <div class="result"></div>
-          </div>
-          <div class="box-2">
-            <canvas
-              id="canvas"
-              class="preview-canvas"
-              width="300"
-              height="300"
-            ></canvas>
-          </div>
-          <!--rightbox-->
-          <img class="cropped" id="cropped-image" src="" alt="" />
-        </div>
-        <button class="btn insert">Insert</button>
-      </div>
-    </div>
     <form action="/topdf" method="POST" width="40%" style="margin-left: 20px">
       <input id="x" type="hidden" name="content" />
       <trix-editor id="trixeditor" input="x"></trix-editor>
