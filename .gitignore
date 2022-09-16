@@ -3,3 +3,6 @@ __pycache__/*
 config/*
 test/*
 uploads/*
+downloads/*
+note-creator/*
+deta_config/*

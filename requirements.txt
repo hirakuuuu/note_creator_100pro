@@ -1,3 +1,4 @@
 flask
 python-dotenv
 google-cloud-vision
+fpdf2==2.5.6

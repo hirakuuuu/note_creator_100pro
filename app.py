@@ -1,12 +1,17 @@
 from distutils import filelist
 import os
-from flask import Flask, render_template, request, redirect, url_for, flash
+import datetime
+import pathlib
+
+from flask import Flask, render_template, request, redirect, url_for, flash, send_file, current_app as app
 from werkzeug.utils import secure_filename
 import json
+import html
 
 from flask import send_from_directory
 
 from cloud_vision_api import getText
+from fpdf import FPDF, HTMLMixin
 
 # 画像のアップロード先のディレクトリ
 UPLOAD_FOLDER = './uploads'
@@ -33,7 +38,7 @@ def index():
         # ファイルが無かった場合の処理
         if 'file' not in request.files:
             return redirect(request.url)
-        
+
         # データの取り出し
         file = request.files['file']
         # ファイル名がなかったときの処理
@@ -80,14 +85,40 @@ def get_text_on_img():
             print(e)
 
         dict = {"answer": output_text}
-    
+
     return json.dumps(dict)
+
+class MyFPDF(FPDF, HTMLMixin):
+    pass
 
 @app.route('/topdf', methods=["POST"])
 def trix_to_pdf():
     if request.method == "POST":
-        trix_text = request.form.get('content')
-        print(trix_text)
+        trix_content = request.form.get('content')
+        print(trix_content)
+
+        # convert html text to pdf
+        pdf = MyFPDF()
+        pdf.add_page()
+
+        # fontをaddする
+        font_path = './static/font/ipaexm.ttf'
+        pdf.add_font('mincho', fname=font_path)
+        # fontをsetする
+        pdf.set_font('mincho')
+        # debug print コメントアウトすると，trixに入力した文字が出力
+        # trix_content = '''
+        # <H1 align="center">html2fpdf</H1>
+        # <h2>Basic usage</h2>
+        # <p>あああ</p>
+        # '''
+        pdf.write_html(trix_content)
+        now_str = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+        pathlib.Path('downloads').mkdir(exist_ok=True)
+        filepath = f'downloads/{now_str}.pdf'
+        pdf.output(filepath)
+        return send_file(filepath, mimetype='application/pdf')
+
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
