@@ -1,5 +1,5 @@
 let cropper = "";
-
+let cnt = 0;
 // insert on click
 $(".insert").click(function (e) {
   e.preventDefault();
@@ -23,11 +23,15 @@ $(".insert").click(function (e) {
     class: "img-trix",
     src: imgSrc,
   }).appendTo("#trixeditor");
+  cnt += 1
+  $("#inserted-counter").removeClass("hide");
+  $("#inserted-counter").text("Inserted: " + cnt)
 });
 
 const canvas = document.getElementById("canvas");
 // when you crop preview-img, crop target will change to the image you click
 function viewCrop(obj) {
+  $("#cropping-desc").remove()
   // clean result before
   $(".result").html("");
   // create new image, append new image

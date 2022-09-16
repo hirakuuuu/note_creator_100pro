@@ -113,6 +113,14 @@ def trix_to_pdf():
         # <p>あああ</p>
         # '''
         pdf.write_html(trix_content)
+        start = 0
+        # <figure タグを探し、その前に<br>を入れる
+        while trix_content.find('<figure', start) != -1:
+            tmp = trix_content.find('<figure', start)
+            trix_content = trix_content[:tmp] + '<br>' + trix_content[tmp:]
+            # print(trix_content[:tmp + 10]) # debug
+            start = tmp + 7
+
         now_str = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
         pathlib.Path('downloads').mkdir(exist_ok=True)
         filepath = f'downloads/{now_str}.pdf'

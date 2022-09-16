@@ -20,9 +20,10 @@
     <form method="post" enctype="multipart/form-data">
 
       <label>
-        <input type="file" name="upfile" id="upload" multiple required />画像をアップロード
+        <input type="file" name="upfile" id="upload" multiple required />画像アップロード
       </label>
       <p class="name">選択されていません</p>
+      <p id="cropping-desc" class="hide">クリックして、トリミング</p>
       <div id="cropping-popup" class="hide">
         <div id="preview"></div>
 
@@ -45,6 +46,7 @@
             <img class="cropped" id="cropped-image" src="" alt="" />
           </div>
           <button class="btn insert">Insert</button>
+          <span class="hide" id="inserted-counter"></span>
         </div>
       </div>
 
@@ -56,10 +58,10 @@
     <form action="/topdf" method="POST" width="40%" style="margin-left: 20px">
       <input id="x" type="hidden" name="content" />
       <trix-editor id="trixeditor" input="x"></trix-editor>
+      <div class="btn">
+        <input type="submit" id="trixButton" value="保存"  class="btn--blue"/>
+      </div>
     </form>
-    <div class="btn">
-      <input type="submit" id="trixButton" value="保存"  class="btn--blue"/>
-    </div>
 
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
