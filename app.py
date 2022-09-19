@@ -113,7 +113,7 @@ def trix_to_pdf():
         # '''
         start = 0
         # <figure タグを探し、その前に<br>を入れる
-        print('start')
+        # print('start')
         # while trix_content.find('<figure', start) != -1:
         #     tmp = trix_content.find('<figure', start)
         #     trix_content = trix_content[:tmp] + '<br><br>' + trix_content[tmp:]

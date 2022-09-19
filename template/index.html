@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>test</title>
     <link rel="stylesheet" href="static/css/base.css">
+    <link rel="stylesheet" href="static/css/load.css">
     <style>
     .btn{
       text-align: right;
@@ -14,6 +15,15 @@
   </head>
 
   <body>
+    <!-- 文字認識中に表示するくるくる -->
+    <div id="loader" class="loaded">
+      <div class="spinner">
+        <div class="cube1"></div>
+        <div class="cube2"></div>
+      </div>
+      <div class="load-text">文字認識中</div>
+    </div>
+
     <p>
       <h1>ノート生成アプリ</h1>
     </p>
@@ -69,6 +79,7 @@
   <script type="text/javascript" src="./static/js/preview.js"></script>
   <script type="text/javascript" src="./static/js/send.js"></script>
   <script type="text/javascript" src="./static/js/crop.js"></script>
+
 
   <!-- Trixのインポート -->
   <link rel="stylesheet" type="text/css" href="./static/css/trix.css" />
